@@ -1,5 +1,6 @@
 import React, {Component} from 'react';
-import Cabecera from './components/Cabecera'
+import Cabecera from './components/Cabecera';
+import P from './components/P';
 import './App.css';
 
 
@@ -23,11 +24,14 @@ class App extends Component {
     return (
       <div className="App">
          <Cabecera miau={miau} manejaClick={this.manejaClick}/>
-        <p onClick={this.cambiartextoDelEstado} className="App-intro">
-           {miau}
-        </p>
+          <P>{miau} y otras cosas mas </P>
+      
+      
       </div>
     );
   }
 }
 export default App;
+
+
+//onClick={this.cambiartextoDelEstado}
