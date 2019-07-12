@@ -24,7 +24,7 @@ class App extends Component {
     return (
       <div className="App">
          <Cabecera miau={miau} manejaClick={this.manejaClick}/>
-          <P>{miau} y otras cosas mas </P>
+          <P onClick={this.cambiartextoDelEstado}>{miau} y otras cosas mas</P>
       
       
       </div>
@@ -33,5 +33,3 @@ class App extends Component {
 }
 export default App;
 
-
-//onClick={this.cambiartextoDelEstado}
