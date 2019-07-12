@@ -4,18 +4,28 @@ import './App.css';
 
 
 class App extends Component {
-  manejaClick = texto => { 
-    console.log(texto) 
+  
+  state= {
+  // son de uso del mismo componente  pero se pueden pasar copmo props
+    miau: 'Bienvenido a miau'
   }
+
+  cambiartextoDelEstado = () => {
+    //recarga al hacer click con el setState
+    this.setState({miau: 'hola mundo'})
+  }
+
+  
   render() {
-    const miau = 'texto de miau'
-    const guau = 'texto de guau'
+    const { miau } = this.state
+    const texto = 'texto de miau'
+    
     return (
       <div className="App">
-         <header className="App-header" >
-                <Cabecera miau={miau} manejaClick={this.manejaClick}/>
-                <Cabecera miau={guau} manejaClick={this.manejaClick}/>
-        </header>
+         <Cabecera miau={miau} manejaClick={this.manejaClick}/>
+        <p onClick={this.cambiartextoDelEstado} className="App-intro">
+           {miau}
+        </p>
       </div>
     );
   }
