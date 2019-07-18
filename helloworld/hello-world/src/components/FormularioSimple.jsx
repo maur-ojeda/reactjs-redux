@@ -1,4 +1,18 @@
 import React, { Component } from 'react'
+import P from './P';
+
+
+const validate = values =>{
+    const errors = {}
+    if(!values.nombre){
+        errors.nombre = 'Este campo es obligatorio'
+    }
+    if(!values.apellido){
+        errors.apellido = 'Este campo es obligatorio'
+    } 
+    
+    return errors
+}
 
 
 export default class FormularioSimple extends Component {
@@ -7,7 +21,10 @@ se guarda todos los datos de los formularios
 */
 
 //todas la variables esta almacenadas en state 
-state = {}
+state = {
+    // contiene los mensajes de errores
+    errors : {}
+}
 
 //
 handleChange = ({target}) => {
@@ -17,15 +34,31 @@ handleChange = ({target}) => {
 
 handleSubmit = e =>{
     e.preventDefault()
-    console.log('Prevenido', this.state );
+//object destructuring de errores ya que viene con mensajes
+    const { errors, ...sinErrors } = this.state
+    const result = validate( sinErrors )
+    
+    this.setState({ errors: result})
+    if(!Object.keys(result).length){
+        //return this.setState({ errors: result})
+        //enviar formulario
+        console.log('formulario válido')
+    } 
+   
 }
 
     render(){
-        console.log( this.state )
+
+        const { errors } = this.state
+
         return(
             <form onSubmit={this.handleSubmit}>
                 <input name="nombre" onChange={this.handleChange}/>
+                {/* && evalua lo de la izquerda como T or F  y retrona lo de la derecha, el componente de P*/
+                    errors.nombre && <P>{ errors.nombre }</P>
+                }
                 <input name="apellido" onChange={this.handleChange}/>
+                 { errors.apellido && <P>{ errors.nombre }</P>}
                 <input type="submit" value="Enviar"></input>
             </form>
         )
