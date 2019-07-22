@@ -25,7 +25,6 @@ state = {
     // contiene los mensajes de errores
     errors : {}
 }
-
 //
 handleChange = ({target}) => {
     const { name, value } = target
@@ -40,9 +39,9 @@ handleSubmit = e =>{
     
     this.setState({ errors: result})
     if(!Object.keys(result).length){
-        //return this.setState({ errors: result})
         //enviar formulario
         console.log('formulario válido')
+        e.target.reset()
     } 
    
 }
